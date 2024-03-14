@@ -1,0 +1,182 @@
+< q1
+
+Read the image `pear.png` and convert it into a grayscale image, using scikit-image.
+
+< h1
+
+hint: io.imread, rgb2gray
+
+< a1
+
+from skimage import io
+from skimage.color import rgb2gray
+image = io.imread("pear.png")
+image_gray = rgb2gray(image)
+
+< q2 
+
+Do the same thing as in the above 1, but use OpenCV.
+
+< h2
+
+hint: cv2.imread, cv2.cvtColor
+
+< a2
+
+import cv2 
+image = cv2.imread("pear.png")
+image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+< q3
+
+Calculate the mean pixel value of the above grayscale image and print it out.
+Then display the original colour image and the converted grayscale image together using subplot 
+
+< h3
+
+hint: np.mean, plt.subplot
+
+< a3
+
+import numpy as np
+mean_pixel_value = np.mean(image_gray)
+print(mean_pixel_value)
+
+import matplotlib.pyplot as plt
+plt.subplot(121),plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB)),plt.title('Original image')
+plt.xticks([]), plt.yticks([])
+plt.subplot(122),plt.imshow(image_gray, cmap='gray'),plt.title('Gray image')
+plt.xticks([]), plt.yticks([])
+plt.show()
+
+< q4
+
+Blur the above colour image using the four OpenCV blurring methods (i.e. average blurring, median blurring, Gaussian blurring, and bilateral bluurring) and display their results.
+
+< h4
+
+hint: cv2.blur, cv2.GaussianBlue, cv2.medianBlur, cv2.bilateralFilter
+
+< a4
+
+img_average = cv2.blur(image,(5,5))
+img_Gaussian = cv2.GaussianBlur(image,(5,5),0)
+img_median = cv2.medianBlur(image,5)
+img_bilateral = cv2.bilateralFilter(image,9,75,75)
+
+plt.rcParams['figure.figsize'] = [30, 10]
+
+plt.subplot(151),plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB)),plt.title('Original')
+plt.xticks([]), plt.yticks([])
+plt.subplot(152),plt.imshow(cv2.cvtColor(img_average, cv2.COLOR_BGR2RGB)),plt.title('Average')
+plt.xticks([]), plt.yticks([])
+plt.subplot(153),plt.imshow(cv2.cvtColor(img_Gaussian, cv2.COLOR_BGR2RGB)),plt.title('Gaussian')
+plt.xticks([]), plt.yticks([])
+plt.subplot(154),plt.imshow(cv2.cvtColor(img_median, cv2.COLOR_BGR2RGB)),plt.title('Median')
+plt.xticks([]), plt.yticks([])
+plt.subplot(155),plt.imshow(cv2.cvtColor(img_bilateral, cv2.COLOR_BGR2RGB)),plt.title('Bilateral')
+plt.xticks([]), plt.yticks([])
+plt.show()
+
+< q5 
+
+Save the blurred images as pear-{method name}.png.
+
+< h5
+
+hint: cv2.imwrite
+
+< a5
+
+import os
+cv2.imwrite(os.path.join(os.path.expanduser('~'),'Desktop','logo-average.png'), img_average)
+cv2.imwrite(os.path.join(os.path.expanduser('~'),'Desktop','logo-Gaussian.png'), img_Gaussian)
+cv2.imwrite(os.path.join(os.path.expanduser('~'),'Desktop','logo-median.png'), img_median)
+cv2.imwrite(os.path.join(os.path.expanduser('~'),'Desktop','logo-bilateral.png'), img_bilateral)
+
+< q6
+
+Detect edges using the Canny edge detector and display the result, using scikit-image.
+
+< h6
+
+hint: feature.canny
+
+< a6
+
+from skimage import feature
+edges = feature.canny(image_gray)
+plt.subplot(121),plt.imshow(image_gray,cmap = 'gray')
+plt.title('Original Image'), plt.xticks([]), plt.yticks([])
+plt.subplot(122),plt.imshow(edges,cmap = 'gray')
+plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
+plt.show()
+
+< q7
+
+Do the same edge detection as in 6, but using OpenCV instead.
+
+< h7 
+
+hint: cv2.Canny
+
+< a7 
+
+edges = cv2.Canny(image,100,200)
+plt.subplot(121),plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+plt.title('Original Image'), plt.xticks([]), plt.yticks([])
+plt.subplot(122),plt.imshow(edges,cmap = 'gray')
+plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
+plt.show()
+
+< q8
+
+Load the FashionMNIST dataset and define the corresponding training and test data.
+
+< h8
+
+hint: datasets.FashionMNIST
+
+< a8 
+
+from torchvision import datasets
+from torchvision.transforms import ToTensor
+
+# Download training data from open datasets.
+training_data = datasets.FashionMNIST(
+    root="data",
+    train=True,
+    download=True,
+    transform=ToTensor(),
+)
+
+# Download test data from open datasets.
+test_data = datasets.FashionMNIST(
+    root="data",
+    train=False,
+    download=True,
+    transform=ToTensor(),
+)
+
+< q9
+
+From the above loaded data, create training and testing data loaders, with a batch size of 64.
+
+< h9
+
+hint: DataLoader
+
+< a9 
+
+from torch.utils.data import DataLoader
+
+batch_size = 64
+
+# Create data loaders.
+train_dataloader = DataLoader(training_data, batch_size=batch_size)
+test_dataloader = DataLoader(test_data, batch_size=batch_size)
+
+for X, y in test_dataloader:
+    print(f"Shape of X [N, C, H, W]: {X.shape}")
+    print(f"Shape of y: {y.shape} {y.dtype}")
+    break
