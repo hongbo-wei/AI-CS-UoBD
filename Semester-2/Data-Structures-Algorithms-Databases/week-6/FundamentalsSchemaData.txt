@@ -1,0 +1,267 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 16.2
+-- Dumped by pg_dump version 16.2
+
+-- Started on 2024-02-21 22:52:12
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 4 (class 2615 OID 2200)
+-- Name: public; Type: SCHEMA; Schema: -; Owner: pg_database_owner
+--
+
+CREATE SCHEMA public;
+
+
+ALTER SCHEMA public OWNER TO pg_database_owner;
+
+--
+-- TOC entry 4869 (class 0 OID 0)
+-- Dependencies: 4
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
+--
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 219 (class 1259 OID 16443)
+-- Name: allmarks03; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.allmarks03 (
+    student character(6) NOT NULL,
+    mark integer,
+    bc character(8)
+);
+
+
+ALTER TABLE public.allmarks03 OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 16404)
+-- Name: courses; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.courses (
+    level integer,
+    cid integer NOT NULL,
+    name character varying,
+    credits integer,
+    semester integer,
+    bc character(8)
+);
+
+
+ALTER TABLE public.courses OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 16421)
+-- Name: lecturing; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.lecturing (
+    cid integer NOT NULL,
+    sid integer NOT NULL,
+    year integer,
+    numbers integer
+);
+
+
+ALTER TABLE public.lecturing OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 16411)
+-- Name: period; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.period (
+    semester integer NOT NULL,
+    description character varying
+);
+
+
+ALTER TABLE public.period OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 16399)
+-- Name: staff; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.staff (
+    sid integer NOT NULL,
+    title character varying(6),
+    firstname character varying(15),
+    lastname character varying(20),
+    email character varying(40),
+    office integer,
+    phone integer
+);
+
+
+ALTER TABLE public.staff OWNER TO postgres;
+
+--
+-- TOC entry 4863 (class 0 OID 16443)
+-- Dependencies: 219
+-- Data for Name: allmarks03; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.allmarks03 VALUES ('216253', 80, '06-34140');
+INSERT INTO public.allmarks03 VALUES ('321321', 70, '06-31265');
+INSERT INTO public.allmarks03 VALUES ('231345', 90, '06-34140');
+INSERT INTO public.allmarks03 VALUES ('213452', 90, '06-37251');
+INSERT INTO public.allmarks03 VALUES ('235214', 95, '06-46352');
+
+
+--
+-- TOC entry 4860 (class 0 OID 16404)
+-- Dependencies: 216
+-- Data for Name: courses; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.courses VALUES (4, 2001, 'Datastructure Algorithm Databases', 20, 2, '06-34140');
+INSERT INTO public.courses VALUES (4, 2002, 'Software Workshop 1', 20, 2, '06-31265');
+INSERT INTO public.courses VALUES (4, 2003, 'Software Workshop 1', 20, 1, '06-37251');
+INSERT INTO public.courses VALUES (4, 2004, 'Project', 60, 3, '06-34286');
+INSERT INTO public.courses VALUES (4, 2005, 'Computer Systems', 20, 1, '06-46352');
+INSERT INTO public.courses VALUES (4, 2007, 'Software Engineering', 20, 1, '06-45342');
+
+
+--
+-- TOC entry 4862 (class 0 OID 16421)
+-- Dependencies: 218
+-- Data for Name: lecturing; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.lecturing VALUES (2002, 1003, 2004, 150);
+INSERT INTO public.lecturing VALUES (2005, 1003, 2003, 300);
+INSERT INTO public.lecturing VALUES (2001, 1001, 1999, 200);
+INSERT INTO public.lecturing VALUES (2001, 1002, 2000, 100);
+INSERT INTO public.lecturing VALUES (2004, 1002, 2001, 400);
+
+
+--
+-- TOC entry 4861 (class 0 OID 16411)
+-- Dependencies: 217
+-- Data for Name: period; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.period VALUES (1, 'Fall');
+INSERT INTO public.period VALUES (2, 'Spring');
+INSERT INTO public.period VALUES (3, 'Summer');
+
+
+--
+-- TOC entry 4859 (class 0 OID 16399)
+-- Dependencies: 215
+-- Data for Name: staff; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.staff VALUES (1004, 'Dr', 'Mirco', 'Jiocobbe', NULL, 105, NULL);
+INSERT INTO public.staff VALUES (1005, 'Dr', 'Jizheng', 'Wan', NULL, 107, NULL);
+INSERT INTO public.staff VALUES (1001, 'Dr', 'Xin', 'Yao', NULL, 211, NULL);
+INSERT INTO public.staff VALUES (1003, 'Prof', 'Uday', 'Reddy', NULL, 100, NULL);
+INSERT INTO public.staff VALUES (1006, 'Prof', 'John', 'Barnden', NULL, NULL, 44280500);
+INSERT INTO public.staff VALUES (1007, 'Prof', 'Achim', 'Jung', NULL, NULL, 44280500);
+INSERT INTO public.staff VALUES (1008, 'Prof', 'Marta', 'Kwiatkowska', NULL, NULL, 44280500);
+INSERT INTO public.staff VALUES (1009, 'Prof', 'Aaron', 'Sloman', NULL, NULL, 44280500);
+INSERT INTO public.staff VALUES (1002, 'Dr', 'Mark', 'Ryan', NULL, 237, 44280500);
+INSERT INTO public.staff VALUES (1010, 'Dr', 'Ahmad', 'Ibrahim', NULL, NULL, NULL);
+
+
+--
+-- TOC entry 4712 (class 2606 OID 16447)
+-- Name: allmarks03 allmarks03_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.allmarks03
+    ADD CONSTRAINT allmarks03_pkey PRIMARY KEY (student);
+
+
+--
+-- TOC entry 4706 (class 2606 OID 16410)
+-- Name: courses courses_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.courses
+    ADD CONSTRAINT courses_pkey PRIMARY KEY (cid);
+
+
+--
+-- TOC entry 4710 (class 2606 OID 16425)
+-- Name: lecturing lecturing_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lecturing
+    ADD CONSTRAINT lecturing_pkey PRIMARY KEY (cid, sid);
+
+
+--
+-- TOC entry 4708 (class 2606 OID 16437)
+-- Name: period period_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.period
+    ADD CONSTRAINT period_pkey PRIMARY KEY (semester);
+
+
+--
+-- TOC entry 4704 (class 2606 OID 16403)
+-- Name: staff staff_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.staff
+    ADD CONSTRAINT staff_pkey PRIMARY KEY (sid);
+
+
+--
+-- TOC entry 4713 (class 2606 OID 16438)
+-- Name: courses courses_semester_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.courses
+    ADD CONSTRAINT courses_semester_fkey FOREIGN KEY (semester) REFERENCES public.period(semester) NOT VALID;
+
+
+--
+-- TOC entry 4714 (class 2606 OID 16426)
+-- Name: lecturing lecturing_cid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lecturing
+    ADD CONSTRAINT lecturing_cid_fkey FOREIGN KEY (cid) REFERENCES public.courses(cid) NOT VALID;
+
+
+--
+-- TOC entry 4715 (class 2606 OID 16431)
+-- Name: lecturing lecturing_sid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lecturing
+    ADD CONSTRAINT lecturing_sid_fkey FOREIGN KEY (sid) REFERENCES public.staff(sid) NOT VALID;
+
+
+-- Completed on 2024-02-21 22:52:12
+
+--
+-- PostgreSQL database dump complete
+--
+
