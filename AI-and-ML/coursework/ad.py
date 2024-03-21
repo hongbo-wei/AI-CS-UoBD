@@ -38,6 +38,8 @@ def max(u,v):
         return builtins.max(u,v)
     else:
         val = builtins.max(u.val,v.val)
-        # int(u.val > v.val): This expression evaluates to 1 if u.val is greater than v.val, and 0 otherwise
+        # int(u.val > v.val):
+        # This expression evaluates to True 1 if u.val is greater than v.val
+        # and 0 otherwise
         grad = u.grad*int(u.val > v.val) + v.grad*int(u.val <= v.val)
         return dual(val, grad)
