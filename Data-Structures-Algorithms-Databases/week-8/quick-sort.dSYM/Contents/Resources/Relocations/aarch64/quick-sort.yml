@@ -1,0 +1,10 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/hongbo_wei/Downloads/GitHub/AI-CS-UoBD/Data-Structures-Algorithms-Databases/week-8/quick-sort'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _quicksort, symObjAddr: 0x0, symBinAddr: 0x100003B80, symSize: 0x34 }
+  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _quicksort, symObjAddr: 0x0, symBinAddr: 0x100003B80, symSize: 0x34 }
+  - { offsetInCU: 0x73, offset: 0x73, size: 0x8, addend: 0x0, symName: _quicksort_run, symObjAddr: 0x34, symBinAddr: 0x100003BB4, symSize: 0x7C }
+  - { offsetInCU: 0xCF, offset: 0xCF, size: 0x8, addend: 0x0, symName: _partition, symObjAddr: 0xB0, symBinAddr: 0x100003C30, symSize: 0x270 }
+  - { offsetInCU: 0x1A6, offset: 0x1A6, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x320, symBinAddr: 0x100003EA0, symSize: 0xCC }
+...
