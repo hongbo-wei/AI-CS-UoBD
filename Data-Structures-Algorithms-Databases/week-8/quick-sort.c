@@ -34,12 +34,13 @@ int partition(int arr[], int left , int right) {
     int a_count = left;
     int b_count = 1;
     for ( int i = left; i <= right; i++) {
-        if ( i == pivotindex ) arr_b[0] = arr[i];
-    else if (arr[i] < pivot || 
-            (arr[i] == pivot && i < pivotindex))
-        arr[a_count++] = arr[i];
-    else
-        arr_b[b_count++] = arr[i];
+        if ( i == pivotindex )
+            arr_b[0] = arr[i];
+        else if (arr[i] < pivot || 
+                (arr[i] == pivot && i < pivotindex))
+            arr[a_count++] = arr[i];
+        else
+            arr_b[b_count++] = arr[i];
     }
     for (int i = 0; i < b_count; i++)
         arr[a_count++] = arr_b[i];
