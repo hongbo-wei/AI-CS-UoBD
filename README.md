@@ -11,4 +11,5 @@
 - [Data Structures, Algorithms, and Databases](https://program-and-modules-handbook.bham.ac.uk/webhandbooks/WebHandbooks-control-servlet?Action=getModuleDetailsList&pgSubj=06&pgCrse=34141&searchTerm=0020232)  - 20 credits
 - [Project - Conversion MSc](https://program-and-modules-handbook.bham.ac.uk/webhandbooks/WebHandbooks-control-servlet?Action=getModuleDetailsList&pgSubj=06&pgCrse=30383&searchTerm=002023) – 60 credits
 - [Software Workshop 1](https://program-and-modules-handbook.bham.ac.uk/webhandbooks/WebHandbooks-control-servlet?Action=getModuleDetailsList&pgSubj=06&pgCrse=34182&searchTerm=002023)  – 20 credits
+
 Please note: The modules listed on the website for this programme are regularly reviewed to ensure they are up-to-date and informed by the latest research and teaching methods
