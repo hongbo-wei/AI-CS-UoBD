@@ -27,6 +27,13 @@ def convnet(x):
     # y = max(0, v^t * z)
     y = relu(z[0]*v_dual[0] + z[1]*v_dual[1] + z[2]*v_dual[2] + z[3]*v_dual[3])
 
+    # Gradients of the output with respect to the rest of the parameters
+    # d = dual(0, 0)
+    # for i in range(4):
+    #     d += v_dual[i]*z[i]
+    # FFw = relu(-y*(d))
+    # print(f'Gradient of the output with respect to the rest of the parameters: {FFw}')
+
     return y, z
 
 
